@@ -1,0 +1,297 @@
+<html>
+    <!-- Wen Ou presents -->
+    <body>
+
+        <style>
+            table{
+                background-color:rgb(164, 214, 255);
+                border-radius:35px;
+                border-style:outset;
+                border-width: 10;
+                border-color: cornflowerblue;
+            }
+
+            input{
+                width:412;
+                height:100;
+                font-size:40;
+                font-weight: bold;
+                border-radius: 25px;
+                border-width: 5;
+                text-align:center;
+                font-family: cursive;
+            }
+
+            button{
+                width:100;
+                height:60;
+                font-size:25;
+                border-radius:50%;
+                font-family: cursive;
+            }
+
+            .other{
+                width:55.3;
+                height:35;
+                font-size:18;
+                background-color:rgb(73, 75, 179);
+                border-radius:50px;
+                color: rgb(225, 225, 225);
+            }
+
+            #deleteButton{
+                width:204;
+                height:60;
+                background-color: rgb(2,87,223);
+                font-weight: bold;
+                color: rgb(240, 240, 240);
+                border-radius:50px;
+            }
+
+            #clearAllButton{
+                width:204;
+                height:60;
+                background-color: rgb(2,87,223);
+                font-weight: bold;
+                color: rgb(240, 240, 240);
+                border-radius:50px;
+            }
+
+            #equalButton{
+                background-color: rgb(66, 134, 244);
+                font-weight: bold;
+            }
+
+            .operation{
+                background-color: rgb(133, 174, 245);
+                font-weight: bold;
+            }
+
+            .other:hover{
+                background-color:rgb(100, 82, 211);
+            }
+
+            .num:hover{
+                background-color:rgb(199, 199, 199);
+            }
+
+            .operation:hover{
+                background-color: rgb(66, 134, 244);
+            }
+
+            #deleteButton:hover{
+                background-color: rgb(0, 53, 199);
+                color: rgb(240, 240, 240);
+            }
+
+            #clearAllButton:hover{
+                background-color: rgb(0, 53, 199);
+                color: rgb(240, 240, 240);            
+            }
+
+            #equalButton:hover{
+                background-color: rgb(2,87,223);
+            }
+
+        </style>
+
+        <script>
+            var num1, num2, signChoice;
+            var decimal = false; // There is no decimal in the number.
+
+            function addToScreen (num) {
+                document.getElementById("screen").value += num;
+            }
+
+            function setSign (sign) {
+                num1 = document.getElementById("screen").value;
+                signChoice = sign;
+                document.getElementById("screen").value = "";
+                decimal = false;
+            }
+
+            function equalsPressed() {
+                num2 = document.getElementById("screen").value;
+                if (signChoice == "*") {
+                    document.getElementById("screen").value = num1*num2;
+                } else if (signChoice == "+") {
+                    document.getElementById("screen").value = Number(num1)+Number(num2); 
+                } else if (signChoice == "-") {
+                    document.getElementById("screen").value = num1-num2;
+                } else if (signChoice == "/") {
+                    document.getElementById("screen").value = num1/num2;
+                } else if (signChoice == "^") {
+                    document.getElementById("screen").value = Math.pow(num1, num2);
+                }
+            }
+
+            function addDecimal() {
+                num1 = document.getElementById("screen").value;
+                if (decimal === false) { // Only adds a decimal if there isn't already a decimal in the number.
+                    // the "+" sign makes sure that num1 is read as a number not a string.
+                    document.getElementById("screen").value = num1 + ".";
+                    decimal = true;
+                } else { // If there already is a decimal, no decimal is added.
+                    document.getElementById("screen").value = num1;
+                }
+            }
+
+            function deleteByOne() {
+                var num1 = String(document.getElementById("screen").value);
+                document.getElementById("screen").value = num1.slice(0, -1);
+            }
+
+            function clearAll() {
+                document.getElementById("screen").value = "";
+                decimal = false; // Removes everything, including the decimal value.
+            }
+
+            function percent() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = num1/100;
+            }
+
+            function squareNum() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = num1*num1;
+            }
+
+            function squareRoot() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = num1**0.5;
+            }
+
+            function pi() {
+                document.getElementById("screen").value = Math.PI;
+            }
+
+            function reciprocal () {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = 1/num1;
+            }
+
+            function e() {
+                document.getElementById("screen").value = Math.E;
+            }
+
+            function inverse() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = num1*(-1);
+            }
+
+            function log() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = Math.log10(num1);
+            }
+
+            function ln() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = Math.log(num1);
+            }
+
+            function factorial () {
+                num1 = document.getElementById("screen").value;
+                function facto(num1) { 
+                    if (num1 == 0 || num1 == 1){
+                        return 1;
+                    } else {
+                        return facto(num1-1)*num1;
+                    } 
+                }     
+                document.getElementById("screen").value = facto(num1);
+            }
+
+            function sin() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = Math.sin(num1*Math.PI/180);
+            }
+
+            function cos() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = Math.cos(num1*Math.PI/180);
+            }
+            
+            function tan() {
+                num1 = document.getElementById("screen").value;
+                document.getElementById("screen").value = Math.tan(num1*Math.PI/180);
+            }
+
+        </script>
+
+        <center><table cellspacing=12 cellpadding=1>
+
+            <tr>
+                <td><input type="text" id="screen"><br></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="setSign('^')" class="other">^</button>
+                    <button onclick="e()" class="other">e</button>
+                    <button onclick="log()" class="other">log</button>
+                    <button onclick="ln()" class="other">ln</button>
+                    <button onclick="sin()" class="other">sin</button>
+                    <button onclick="cos()" class="other">cos</button>
+                    <button onclick="tan()" class="other">tan</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="factorial()" class="other">!</button>
+                    <button onclick="squareRoot()" class="other">√</button>
+                    <button onclick="squareNum()" class="other">x^2</button>
+                    <button onclick="percent()" class="other">%</button>
+                    <button onclick="pi()" class="other">π</button>
+                    <button onclick="reciprocal()" class="other">1/x</button>
+                    <button onclick="inverse()" class="other">±</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="deleteByOne()" id="deleteButton">⌫</button>
+                    <button onclick="clearAll()" id="clearAllButton">C</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="addToScreen('1')" class="num">1</button>
+                    <button onclick="addToScreen('2')" class="num">2</button>
+                    <button onclick="addToScreen('3')" class="num">3</button>
+                    <button onclick="setSign('/')" class="operation">/</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="addToScreen('4')" class="num">4</button>
+                    <button onclick="addToScreen('5')" class="num">5</button>
+                    <button onclick="addToScreen('6')" class="num">6</button>
+                    <button onclick="setSign('*')" class="operation">*</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="addToScreen('7')" class="num">7</button>
+                    <button onclick="addToScreen('8')" class="num">8</button>
+                    <button onclick="addToScreen('9')" class="num">9</button>
+                    <button onclick="setSign('-')" class="operation">-</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="addToScreen('0')" class="num">0</button>
+                    <button onclick="addDecimal()" class="num">.</button>
+                    <button onclick="equalsPressed()" id="equalButton">=</button>
+                    <button onclick="setSign('+')" class="operation">+</button>
+                </td>
+            </tr>
+
+        </table></center>
+        
+    </body>
+</html>
